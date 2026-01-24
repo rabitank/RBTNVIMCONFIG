@@ -1,0 +1,9 @@
+{
+    "For loop": {
+        "prefix": ["for-const"],
+        "body": ["for (const ${2: element} of ${1: array}), {", "\t$0", "}"],
+        "description": "A cpp const loop"
+    }
+}
+
+
