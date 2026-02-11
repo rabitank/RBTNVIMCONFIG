@@ -9,6 +9,6 @@ return {
         }
     },
     keys = {
-        {"<leader>uf", ":NvimTreeToggle<CR>", silent=true}
+        {"<leader>ff", ":NvimTreeToggle<CR>", silent=true}
     }
 }

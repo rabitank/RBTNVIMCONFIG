@@ -10,16 +10,15 @@ return {
 		require("mason").setup(opts)
 		local registry = require("mason-registry")
 
-
-        local makesure_install = function (name)
+		local makesure_install = function(name)
 			local success, package = pcall(registry.get_package, name)
 			if success and not package:is_installed() then
 				package:install()
 			end
-        end
+		end
 
 		local function setup(mason_lsp_name, configs)
-            makesure_install(mason_lsp_name)
+			makesure_install(mason_lsp_name)
 			local nvim_lsp = require("mason-lspconfig").get_mappings().package_to_lspconfig[mason_lsp_name]
 			configs.capabilities = require("blink.cmp").get_lsp_capabilities()
 			-- forbiden ls format func, use nnls format
@@ -54,6 +53,14 @@ return {
 				settings = {
 					["rust-analyzer"] = {
 						-- 控制类型提示的显示
+						diagnostics = {
+							enable = true,
+						},
+						init_options = {
+							publishDiagnostics = {
+								relatedInformation = true,
+							},
+						},
 						inlayHints = {
 							-- 显示参数的类型提示
 							parameterHints = {
@@ -76,14 +83,7 @@ return {
 			setup(server, config)
 		end
 		--        vim.cmd("LspStart")
-        
-        makesure_install("codelldb")
-
-		vim.diagnostic.config({
-			virtual_text = true,
-            signs = false,
-			update_in_insert = true,
-		})
+		makesure_install("codelldb")
 		vim.api.nvim_exec_autocmds("User", { pattern = "MasonLoaded" })
 	end,
 }
