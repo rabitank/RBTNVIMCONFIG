@@ -3,6 +3,6 @@ require("core.keymap")
 require("core.lazy")
 
 
-vim.cmd("colorscheme gruvbox")
+vim.cmd("colorscheme everforest")
 -- vim.cmd("hi clear ErrorMsg")
         

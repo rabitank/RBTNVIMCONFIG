@@ -16,12 +16,18 @@ return {
 		end
 
 		install("stylua")
-	--	install("leptosfmt")
+		install("prettier")
+		install("clang-format")
+		--	install("leptosfmt")
 		local null_ls = require("null-ls")
 		null_ls.setup({
 			sources = {
 				null_ls.builtins.formatting.stylua,
-	--			null_ls.builtins.formatting.leptosfmt,
+				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.clang_format.with({
+					extra_args = { "--style={IndentWidth: 4}" },
+				}),
+				--			null_ls.builtins.formatting.leptosfmt,
 			},
 		})
 	end,

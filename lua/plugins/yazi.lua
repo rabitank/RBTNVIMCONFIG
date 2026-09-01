@@ -15,7 +15,7 @@ return {
             silent = true,
 		},
 		{
-			"<c-up>",
+			"<c-y>",
 			"<cmd>Yazi<cr>",
 			desc = "Open yazi at the current file",
             silent = true,

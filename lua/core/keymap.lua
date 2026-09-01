@@ -47,5 +47,14 @@ vim.keymap.set("n", "<leader>el", function()
     vim.cmd("lopen")
   end
 end, { desc = "Toggle Diagnostics List" })
+
 -- 显示错误浮动窗口
 vim.keymap.set("n", "<leader>ef", vim.diagnostic.open_float, { desc = "Show Diagnostics" })
+
+-- 终端模式下，双击 ESC 退出
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { noremap = true })
+
+-- -- open terminal
+-- vim.keymap.set('n', '<leader>t', '<cmd>terminal<CR>', { desc = "Open terminal" })
+-- vim.keymap.set('n', '<leader>vt', '<cmd>vsplit term://bash<CR>', { desc = "Open terminal vertical" })
+-- vim.keymap.set('n', '<leader>ht', '<cmd>split term://bash<CR>', { desc = "Open terminal horizontal" })

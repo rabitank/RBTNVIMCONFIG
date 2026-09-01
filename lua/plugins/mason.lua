@@ -48,6 +48,11 @@ return {
 			pyright = {},
 			["emmet-ls"] = {},
 			["json-lsp"] = {},
+			["clangd"] = {
+                init_options = {
+                    fallbackFlags = {"-std=c++17"}
+                }
+            },
 			["tombi"] = {},
 			["rust-analyzer"] = {
 				settings = {

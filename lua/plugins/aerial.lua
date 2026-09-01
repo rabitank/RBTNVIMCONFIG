@@ -13,6 +13,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 	keys = {
-		{ "<leader>ss", ":AerialToggle<CR>" }, -- symbool search
+		{ "<leader>so", ":AerialOpen<CR>", silent = true }, -- symbool search
+		{ "<leader>ss", ":AerialToggle<CR>", silent = true }, -- symbool search
 	},
 }
