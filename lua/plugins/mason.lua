@@ -49,9 +49,29 @@ return {
 			["emmet-ls"] = {},
 			["json-lsp"] = {},
 			["clangd"] = {
+                cmd = {
+                    "clangd",
+                    "--query-driver=" .. (function()
+                        local globs = {}
+                        for _, name in ipairs({ "g++", "gcc", "clang++" }) do
+                            local dir = vim.fn.exepath(name):gsub("\\", "/"):match("^(.*)/")
+                            if dir then globs[#globs + 1] = dir .. "/*" end
+                        end
+                        return table.concat(globs, ",")
+                    end)(),
+                },
                 init_options = {
                     fallbackFlags = {"-std=c++17"}
-                }
+                },
+                root_dir = function(bufnr, on_dir)
+                    local markers = { "compile_commands.json", "xmake.lua", ".git" }
+                    local name = vim.api.nvim_buf_get_name(bufnr)
+                    on_dir(vim.fs.root(name, markers) or vim.fs.root(vim.fn.getcwd(), markers) or vim.fn.getcwd())
+                end,
+                before_init = function(params, config)
+                    params.initializationOptions = params.initializationOptions or {}
+                    params.initializationOptions.compilationDatabasePath = config.root_dir
+                end,
             },
 			["tombi"] = {},
 			["rust-analyzer"] = {
